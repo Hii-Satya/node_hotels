@@ -13,6 +13,9 @@ const personSchema =new mongoose.Schema({
     enum :['chef','waiter','manager'],
     required :true
  },
+ mobile : {
+   type :Number
+ },
 
  email:{
     type:String,

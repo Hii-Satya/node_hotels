@@ -37,6 +37,7 @@ router.post('/',async (req,res)=>{
         })
 
         // for fetching according to categories
+        /*
         router.get('/:category', async(req,res)=>{
             try{
               const categoryType =req.params.category.trim();
@@ -59,5 +60,29 @@ router.post('/',async (req,res)=>{
                 res.status(500).json({error:'Internal server Error'});
             }
         });
+        */
+
+        //Get Request or EndPoint MenuItems by taste
+router.get("/:taste", async(req, res) => {
+    try {
+      const tasteType = req.params.taste;
+      if (
+        tasteType == "sour" ||
+        tasteType == "sweet" ||
+        tasteType == "spicy"
+      ) {
+        const data = await MenuItem.find({ taste: tasteType });
+        console.log("Fetched Succesfully");
+        res.status(200).json(data);
+      } else {
+        res.status(404).json({ message: "Invalid Work Type" });
+      }
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ message: "Internal Error Occurred", error: err.message });
+    }
+  });
 // hello comment  for check
         module.exports =router;
