@@ -1,8 +1,8 @@
 const mongoose =require('mongoose');
 const menuItemSchema =new mongoose.Schema({
 
- menu :{
-    // type:Array,
+
+
     id:{
         type:Number,
         require:true
@@ -23,7 +23,7 @@ const menuItemSchema =new mongoose.Schema({
         type:String,
         require:true    
     }
-}
+
 
 })
 

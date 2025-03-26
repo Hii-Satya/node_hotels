@@ -1,13 +1,22 @@
+require('dotenv').config();
 const mongoose=require('mongoose');
+// // const mongoURL = 'mongodb://localhost:27017/hotels'
 
-const mongoURL = 'mongodb://localhost:27017/hotels'
+const mongoURL =process.env.mongo_URL;
 
-// mongoose.connect(mongoURL ,{
-//     useNewUrlParser :true,
-//     useUnifiedTopology:true
-// })
-mongoose.connect(mongoURL)
-    .then(() => console.log("Connected to MongoDB successfully"))
+
+if (!mongoURL) {
+    console.error("❌ MONGO_URI is undefined. Check your .env file.");
+    process.exit(1); // Exit process if URI is missing
+}
+
+
+
+mongoose.connect(mongoURL,{
+    
+            useNewUrlParser: true,
+             useUnifiedTopology: true
+}).then(() => console.log("Connected to MongoDB successfully"))
     .catch((err) => console.error("MongoDB connection error:", err));
 
 
